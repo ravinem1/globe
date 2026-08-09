@@ -1,0 +1,13 @@
+{
+    "k":[
+        {
+            "label":"Socrates",
+            "lat": 37.9500,
+            "lng": 23.7500,
+            "type":"person",
+            "size":40,
+            "color":"red",
+            "id":0
+        }
+    ]
+}

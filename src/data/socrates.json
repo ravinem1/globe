@@ -1,0 +1,58 @@
+{
+    "timeline":
+    [
+        {
+            "id":1,
+            "lat": 37.9500,
+            "lng": 23.7500,
+            "label": "Youth",
+            "size": 25,
+            "year": "470 BCE",
+            "color": "green",
+            "type":"event",
+            "story":
+            [
+                {
+                    "type" : "heading",
+                    "value": "Birth in Alopece Deme"
+                },
+                {
+                    "type" : "image",
+                    "value" : "https://iep.utm.edu/wp-content/media/Socrates2.png"
+                },
+                {
+                    "type" : "paragraph",
+                    "value" : "Socrates was born to sculptor and a midwife in the suburban deme of Alopece, now Athens."
+                },
+                {
+                    "type" : "audio",
+                    "value" : "https://samplelib.com/mp3/sample-15s.mp3"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "lat": 40.1937,
+            "lng": 23.3278,
+            "label": "Army",
+            "size": 25,
+            "year": "430 BCE",
+            "color": "green",
+            "type":"event",
+            "story": [
+                {
+                    "type" : "heading",
+                    "value": "Military Service: Battle of Potidaea"
+                },
+                {
+                    "type" : "image",
+                    "value" : "https://d7hftxdivxxvm.cloudfront.net/?height=1294&quality=85&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2F4hqgilloACSgPzpu6nLZWg%2Fnormalized.jpg&width=1600"
+                },
+                {
+                    "type" : "paragraph",
+                    "value" : "The Battle of Potidaea occurred in 432 BC during the early stages of the Peloponnesian War. The Athenian army defeated a combined force from Corinth and Potidaea."
+                }
+            ]
+        }     
+    ]
+}

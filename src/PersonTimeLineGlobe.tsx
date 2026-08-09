@@ -5,6 +5,8 @@ import myGlobe8kTexture from './assets/blue_mable_21600x10800.jpg';
 import { MarkerPopup } from './markerPopup';
 import { markerSvg, faceSvg } from './svgHelper';
 import { type markerType, type eventPopupType, type GeoJsonData, type CountryFeature } from './types';
+import allPhilosphers from './data/philosphers.json';
+import fullData from './data/socrates.json';
 
 function PersonTimelineGlobe() {
 
@@ -14,41 +16,6 @@ const [eventPopup, setEventPopup] = useState<eventPopupType|null>(null);
 const [markerData, setMarkerData] = useState<Array<markerType>>([{label:'Socrates', lat: 37.9500,lng: 23.7500,type:'person',size:40,color:'red',id:0}]);
 const [currentMarkerId, setCurrentMarkerId] = useState<number>(0);
 const [countries,setCountries] = useState<GeoJsonData | null>(null);
-
-  // Sample connections (Arcs) between points
-const arcOrMarkerData : Array<markerType> = [
-    {
-    id:1,
-    lat: 37.9500,
-    lng: 23.7500,
-    label: 'Birth in Alopece Deme',
-    story: 'Socrates was born to sculptor and a midwife in the suburban deme of Alopece, now Athens.',
-    size: 25,
-    year: '470 BCE',
-    color: 'green',
-    type:'event'
-  },
-  {
-    id:2,
-    lat: 40.1937,
-    lng: 23.3278,
-    label: 'Military Service: Battle of Potidaea',
-    size: 25,
-    year: '430 BCE',
-    color: 'green',
-    type:'event'
-  },
-  {
-    id:3,
-    lat: 38.3491,
-    lng: 23.6533,
-    label: 'Military Service: Battle of Delium',
-    size: 25,
-    year: '424 BCE',
-    color: 'green',
-    type:'event'
-  }
-     ]
 
 useEffect(() => {
     
@@ -65,10 +32,13 @@ useEffect(() => {
       camera.updateProjectionMatrix();
       }
   }
+  
   fetch('/datasets/world_bc400.geojson')
     .then(resp => resp.json())
     .then((data : GeoJsonData) => {setCountries(data); })
     .catch(e => console.error(e));
+
+  setMarkerData(allPhilosphers.k);
 }, []);
 
   const handleGlobeReady = () => {
@@ -100,7 +70,7 @@ useEffect(() => {
   {
     if(d.type == 'person')
     {
-      setMarkerData(arcOrMarkerData.filter(e=>e.id == 1));
+      setMarkerData(fullData.timeline.filter(e=>e.id == 1));
       setCurrentMarkerId(d.id);
       globeRef.current?.pointOfView({lat:d.lat,lng:d.lng,altitude:0.2},2000);
     }
@@ -115,7 +85,7 @@ useEffect(() => {
     if(d.id > currentMarkerId)
       {
         const oldMarkers = markerData.map(m => {m.color = "grey"; return m});
-        const y = arcOrMarkerData.findLast(e => e.id == d.id+1);
+        const y = fullData.timeline.findLast(e => e.id == d.id+1);
         
         if(y)
         {

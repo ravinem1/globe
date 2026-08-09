@@ -9,18 +9,19 @@ export function MarkerPopup({d, onClose} : {d:eventPopupType, onClose:()=>void})
     return (
         <div
           style={{
-            position: 'fixed',
-            left: `${d.x + 15}px`, 
-            top: `${d.y - 115}px`,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            color: '#333',
-            padding: '12px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            zIndex: 999,
-            pointerEvents: 'auto',
-            maxWidth: '400px',
-            fontFamily: 'sans-serif'
+           position: 'absolute',
+           top: '5vh',
+           right: 0,
+           width: '25%',
+           height: '95%',
+           zIndex: 10,
+           boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+           boxSizing: 'border-box',
+           backgroundColor: 'rgba(255, 255, 255, 0.95)',
+           color: '#333',
+           borderRadius: '8px',
+           fontFamily: 'sans-serif',
+           padding: '12px',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -41,18 +42,23 @@ function PrepareCardHtml({story} : {story : StoryElement[]})
 {
   return React.createElement(
     'div',
-    {style: {display : 'flex', flexDirection: 'column', gap: '6px', padding: '10px'}},
+    {style: {display : 'flex', flexDirection: 'column', gap: '6px', padding: '10px', height: "90%", 
+      overflow: 'auto'}},
     story.map((child, i) => {
     if(child.type == "heading")
     {
-      return React.createElement('strong', {key : i, style: {fontSize:'14px'}}, child.value);
+      return React.createElement('strong', {key : i, style: {fontSize:'14px', flex: '0 1 auto'}}, child.value);
     }
     else if (child.type === 'image') {
-      return React.createElement('img', { key: i, src: child.value, height: '100px', width: '100px' });
+      return React.createElement('div', {style:{flex: '2 0 70px', minHeight: 0, justifyContent: "center", 
+          alignItems: "center", display: "flex"}}, 
+        React.createElement('img', { key: i, style: { maxHeight: "100%", maxWidth: "100%", objectFit: "contain"} ,
+          src: child.value })
+      );
     }
     else if(child.type === 'paragraph')
     {
-      return React.createElement('p', { key: i, style : {fontSize: '12px'} }, child.value);
+      return React.createElement('p', { key: i, style : {fontSize: '12px', flex: '0 1 auto'} }, child.value);
     }
   }));
 }

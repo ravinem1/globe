@@ -1,8 +1,14 @@
-export type markerType =
+export interface StoryElement
 {
-label:string,lat:number, lng:number,story?:string,size:number,year?:string,color:string,id:number,type:string
+  type : string;
+  value: string;
 }
-export type eventPopupType =
+export interface markerType 
+{
+label:string;lat:number; lng:number;story?:StoryElement[];size:number;year?:string;color:string;id:number;type:string
+}
+
+export interface eventPopupType 
 {
 d: markerType,x:number,y:number
 }

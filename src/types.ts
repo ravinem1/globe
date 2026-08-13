@@ -5,7 +5,8 @@ export interface StoryElement
 }
 export interface markerType 
 {
-label:string;lat:number; lng:number;story?:StoryElement[];size:number;year?:string;color:string;id:number;type:string
+label:string;lat:number; lng:number;story?:StoryElement[];size:number;
+year?:string;color:string;id:number;type:string;mapName?:string;
 }
 
 export interface eventPopupType 

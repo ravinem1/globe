@@ -5,8 +5,8 @@ import myGlobe8kTexture from './assets/blue_mable_21600x10800.jpg';
 import { MarkerPopup } from './markerPopup';
 import { markerSvg, faceSvg } from './svgHelper';
 import { type markerType, type eventPopupType, type GeoJsonData, type CountryFeature, type Arc } from './types';
-import allPhilosphers from './data/philosphers.json';
-import fullData from './data/socrates.json';
+
+//import fullData from './data/socrates.json';
 
 const arcColor = "green";
 const polygonAltitude = 0.03;
@@ -14,17 +14,17 @@ const eventPopuptimeout = 2000;
 const arcShowtimeout = 2000;
 const globePovChangeTimeout = 2000;
 
-function PersonTimelineGlobe() {
+function PersonTimelineGlobe({philospherName}:{philospherName:string}) {
 
 const globeRef = useRef<GlobeMethods | undefined>(undefined);
 const stateTimerRef = useRef<number | null>(null);
 const popupTimerRef = useRef<number | null>(null);
 const [eventPopup, setEventPopup] = useState<eventPopupType|null>(null);
-const [markerData, setMarkerData] = useState<Array<markerType>>([{label:'Socrates', lat: 37.9500,lng: 23.7500,type:'person',size:40,color:'red',id:0}]);
+const [markerData, setMarkerData] = useState<Array<markerType> | null>(null);
 const [arcData, setArcData] = useState<Array<Arc>>([]);
 const [currentMarkerId, setCurrentMarkerId] = useState<number>(0);
 const [countries,setCountries] = useState<GeoJsonData | null>(null);
-
+const [fullData, setFullData] = useState<Array<markerType> | null>(null);
 const setPopupAfterSometime = (args : eventPopupType, timeout : number) => {
     if(popupTimerRef.current)
     {
@@ -46,6 +46,7 @@ const updateStateAfterSometime = ({markers,arcs} : {markers : markerType[],arcs:
 useEffect(() => {
     
   if (globeRef.current) {
+    console.log('globe attached');
     // 1. Access the underlying Three.js OrbitControls instance
       const controls = globeRef.current.controls();
       if (controls) {
@@ -61,10 +62,21 @@ useEffect(() => {
   
   fetch('/datasets/world_bc400.geojson')
     .then(resp => resp.json())
-    .then((data : GeoJsonData) => {setCountries(data); })
+    .then((data : GeoJsonData) => {
+      setCountries(data); 
+    })
     .catch(e => console.error(e));
 
-  setMarkerData(allPhilosphers.k);
+  console.log('why twice');
+
+  fetch(`/datasets/${philospherName}.json`)
+    .then(resp =>resp.json())
+    .then((data : any) => {
+      setFullData(data.timeline);
+      setMarkerData([data.timeline[0]]);
+    })
+    .catch(e => console.error(e));
+
 
   return () => {
     if(popupTimerRef.current){
@@ -121,22 +133,18 @@ useEffect(() => {
   function showNextEvent(d: any)
   {
    
-    if( d && (d.id >= currentMarkerId))
+    if(markerData && d && (d.id >= currentMarkerId))
       {
          
         const oldMarkers = markerData.filter(m => m.type !== 'person').map(m => {m.color = "grey"; return m});
-        const y = fullData.timeline.findLast(e => e.id == d.id+1);
+        const y = fullData?.findLast(e => e.id == d.id+1);
 
         if(y)
         {
           globeRef.current?.pointOfView({lat:y.lat,lng:y.lng,altitude:0.3},globePovChangeTimeout);
           const newMarker = [...oldMarkers, y];
           const newArc : Arc = {startLat : d.lat,startLng:d.lng,endLat : y.lat,endLng:y.lng,color:arcColor,label:'g'};
-          const fnToRun = (arcs : Arc[], markers : markerType[]) =>
-          {
-            setArcData(arcs);
-            setMarkerData(markers);
-          }
+
           const newArcs = [...arcData, newArc];
           updateStateAfterSometime({markers: newMarker,arcs: newArcs}, arcShowtimeout);
 
@@ -156,13 +164,15 @@ useEffect(() => {
   {
     if(e.d.type == 'person')
     {
-      const g = fullData.timeline.filter(e => e.id == 1)
-      //runAfterSometime(setMarkerData,g,arcShowtimeout);
+      if(fullData){
+      const g = fullData.filter(e => e.id == 1)
+  
       updateStateAfterSometime({markers:g,arcs:arcData},arcShowtimeout);
-      //setMarkerData(g);
+      
       setEventPopup(null);
       setPopupAfterSometime({d: g[0],x:0,y:0},eventPopuptimeout);
       setCurrentMarkerId(g[0].id);
+    }
     }
     else{
       if(currentMarkerId == 99)
@@ -170,6 +180,7 @@ useEffect(() => {
         setEventPopup(null);
         return;
       }
+      if(markerData)
       showNextEvent(markerData.findLast(g => g.id == currentMarkerId)); // doubtful
     }
   }
@@ -181,7 +192,7 @@ useEffect(() => {
 
   return (
     <div>
-      {countries && (<Globe
+      {countries && markerData && (<Globe
         ref={globeRef}
         backgroundImageUrl="https://cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
         globeImageUrl={myGlobe8kTexture}

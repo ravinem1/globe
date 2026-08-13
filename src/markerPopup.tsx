@@ -50,7 +50,7 @@ function PrepareCardHtml({story} : {story : StoryElement[]})
       return React.createElement('strong', {key : i, style: {fontSize:'14px', flex: '0 1 auto'}}, child.value);
     }
     else if (child.type === 'image') {
-      return React.createElement('div', {style:{flex: '2 0 70px', minHeight: 0, justifyContent: "center", 
+      return React.createElement('div', {key:43523 , style:{flex: '2 0 70px', minHeight: 0, justifyContent: "center", 
           alignItems: "center", display: "flex"}}, 
         React.createElement('img', { key: i, style: { maxHeight: "100%", maxWidth: "100%", objectFit: "contain"} ,
           src: child.value })

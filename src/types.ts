@@ -33,3 +33,13 @@ export interface CountryProperties {
   PARTOF: string | null;
   BORDERPRECISION : number; // 1 (approximate), 2 (moderately precise) and 3. Ideal for handling approximate border with blur intensity or other visual effect.
 }
+
+export interface Arc
+{
+  startLng :number;
+  endLng :number;
+  startLat :number;
+  endLat :number;
+  color:string;
+  label:string
+}

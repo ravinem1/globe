@@ -6,9 +6,7 @@ import { MarkerPopup } from './markerPopup';
 import { markerSvg, faceSvg } from './svgHelper';
 import { type markerType, type eventPopupType, type GeoJsonData, type CountryFeature, type Arc } from './types';
 
-//import fullData from './data/socrates.json';
-
-const arcColor = "green";
+const arcColor = ["green","red"];
 const polygonAltitude = 0.03;
 const eventPopuptimeout = 2000;
 const arcShowtimeout = 2000;
@@ -17,31 +15,45 @@ const globePovChangeTimeout = 2000;
 function PersonTimelineGlobe({philospherName}:{philospherName:string}) {
 
 const globeRef = useRef<GlobeMethods | undefined>(undefined);
-const stateTimerRef = useRef<number | null>(null);
+const markerStateTimerRef = useRef<number | null>(null);
+const arcStateTimerRef = useRef<number | null>(null);
 const popupTimerRef = useRef<number | null>(null);
+
+const [globeLoaded,setGlobeLoaded] = useState(false);
 const [eventPopup, setEventPopup] = useState<eventPopupType|null>(null);
 const [markerData, setMarkerData] = useState<Array<markerType> | null>(null);
 const [arcData, setArcData] = useState<Array<Arc>>([]);
 const [currentMarkerId, setCurrentMarkerId] = useState<number>(0);
 const [countries,setCountries] = useState<GeoJsonData | null>(null);
 const [fullData, setFullData] = useState<Array<markerType> | null>(null);
+
 const setPopupAfterSometime = (args : eventPopupType, timeout : number) => {
     if(popupTimerRef.current)
     {
-      console.log('clearing already running timer!!');
+      console.log('clearing already running timer!! ' + timeout);
       clearTimeout(popupTimerRef.current);
     }
-    popupTimerRef.current = setTimeout(() => {setEventPopup(args);}, timeout);
+    popupTimerRef.current = setTimeout(() => {setEventPopup(args);}, 3000);
 }
 
-const updateStateAfterSometime = ({markers,arcs} : {markers : markerType[],arcs:Arc[]}, timeout : number) => {
-    if(stateTimerRef.current)
+const updateMarkerStateAfterSometime = (markers : markerType[], timeout : number) => {
+    if(markerStateTimerRef.current)
     {
-      console.log('clearing1 already running timer!!');
-      clearTimeout(stateTimerRef.current);
+      console.log('clearing1 already running timer!!' + timeout);
+      clearTimeout(markerStateTimerRef.current);
     }
-    stateTimerRef.current = setTimeout(() => {setMarkerData(markers);setArcData(arcs);}, timeout);
+    markerStateTimerRef.current = setTimeout(() => {setMarkerData(markers);}, 3000);
 }
+
+const updateArcStateAfterSometime = (arcs : Arc[], timeout : number) => {
+    if(arcStateTimerRef.current)
+    {
+      console.log('clearing1 already running timer!!' + timeout);
+      clearTimeout(arcStateTimerRef.current);
+    }
+    arcStateTimerRef.current = setTimeout(() => {setArcData(arcs);}, 1000);
+}
+
 
 useEffect(() => {
     
@@ -59,39 +71,41 @@ useEffect(() => {
       camera.updateProjectionMatrix();
       }
   }
-  
-  fetch('/datasets/world_bc400.geojson')
-    .then(resp => resp.json())
-    .then((data : GeoJsonData) => {
-      setCountries(data); 
-    })
-    .catch(e => console.error(e));
-
-  console.log('why twice');
 
   fetch(`/datasets/${philospherName}.json`)
     .then(resp =>resp.json())
     .then((data : any) => {
       setFullData(data.timeline);
       setMarkerData([data.timeline[0]]);
+
+      fetch(`/datasets/${data.timeline[0].mapName}.geojson`)
+      .then(resp => resp.json())
+      .then((data : GeoJsonData) => {
+        setCountries(data); 
+      })
+      .catch(e => console.error(e));
+
     })
     .catch(e => console.error(e));
 
 
   return () => {
     if(popupTimerRef.current){
-    clearInterval(popupTimerRef.current);
+      clearTimeout(popupTimerRef.current);
     }
-    if(stateTimerRef.current){
-    clearInterval(stateTimerRef.current);
+    if(markerStateTimerRef.current){
+      clearTimeout(markerStateTimerRef.current);
+    }
+    if(arcStateTimerRef.current){
+      clearTimeout(arcStateTimerRef.current);
     }
   }
-
 }, []);
 
   const handleGlobeReady = () => {
     if (globeRef.current) {
       globeRef.current.pointOfView({altitude : 1.4});
+      setGlobeLoaded(true);
     }
   }
 
@@ -143,11 +157,11 @@ useEffect(() => {
         {
           globeRef.current?.pointOfView({lat:y.lat,lng:y.lng,altitude:0.3},globePovChangeTimeout);
           const newMarker = [...oldMarkers, y];
-          const newArc : Arc = {startLat : d.lat,startLng:d.lng,endLat : y.lat,endLng:y.lng,color:arcColor,label:'g'};
+          const newArc : Arc = {startLat : d.lat,startLng:d.lng,endLat : y.lat,endLng:y.lng,color:"",label:'g'};
 
           const newArcs = [...arcData, newArc];
-          updateStateAfterSometime({markers: newMarker,arcs: newArcs}, arcShowtimeout);
-
+          updateMarkerStateAfterSometime(newMarker, arcShowtimeout);
+          updateArcStateAfterSometime(newArcs, arcShowtimeout);
           setEventPopup(null);
           setPopupAfterSometime({d: y,x:0,y:0}, eventPopuptimeout);
           setCurrentMarkerId(y.id);
@@ -167,8 +181,8 @@ useEffect(() => {
       if(fullData){
       const g = fullData.filter(e => e.id == 1)
   
-      updateStateAfterSometime({markers:g,arcs:arcData},arcShowtimeout);
-      
+      updateMarkerStateAfterSometime(g, arcShowtimeout);
+      updateArcStateAfterSometime(arcData, arcShowtimeout);
       setEventPopup(null);
       setPopupAfterSometime({d: g[0],x:0,y:0},eventPopuptimeout);
       setCurrentMarkerId(g[0].id);
@@ -206,11 +220,11 @@ useEffect(() => {
         arcStartLng="startLng"
         arcEndLat="endLat"
         arcEndLng="endLng"
-        arcColor="color"
+        arcColor={arcColor}
         arcLabel="label"
         arcStroke={0.1} 
         arcAltitude={polygonAltitude}
-        arcsTransitionDuration={2000}
+        //arcsTransitionDuration={2000}
         arcDashAnimateTime={4000}
         arcStartAltitude={polygonAltitude}
         arcEndAltitude={polygonAltitude}
@@ -270,9 +284,23 @@ useEffect(() => {
         polygonAltitude={polygonAltitude}      
       />)}
       {eventPopup && (<MarkerPopup d={eventPopup} onClose={() => onPopupClose(eventPopup)} /> )}
-     
-      </div>
-  )
+      {!globeLoaded && (
+        <div style={{
+           position: 'absolute',
+           top: '40%',
+           right: '40%',
+           zIndex: 10,
+           boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+           boxSizing: 'border-box',
+           backgroundColor: 'rgba(229, 6, 6)',
+           color: '#0e2184',
+           borderRadius: '8px',
+           fontFamily: 'sans-serif',
+           padding: '12px',
+          }}>
+            Loading map with {philospherName} timeline borders
+        </div>)}
+  </div>)
 }
 
-export default PersonTimelineGlobe
+export default PersonTimelineGlobe;

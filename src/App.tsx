@@ -3,6 +3,7 @@ import PersonTimelineGlobe from './PersonTimeLineGlobe';
 
 function App() {
   const [entity, setEntity] = useState<string | null>(null);
+  
   useEffect(() => {
     
   },[]);
@@ -20,13 +21,10 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw', overflow: 'hidden' }}>
-      <div style={{ height: '5vh', display: 'flex', alignItems: 'center', justifyContent:"flex-start",
-         padding: '5px 10px', gap: '5px' }}>
-        {/* <select id="entityList" >
-          <option id="0">--Select--</option>
-          <option id="1">Philosphers</option>
-        </select>  */}    
-        <select id="philospherList" onChange={philospherChanged}>
+      <div className={entity ? 'menuContainer' : 'menuContainerFull'}>
+        <label className={entity ? 'menulabel' : 'menuLabelFull'} 
+          htmlFor='philospherList'>Timeline character: </label>
+        <select className='custom-select' id="philospherList" onChange={philospherChanged}>
           <option id="0">--Select--</option>
           <option id="1">Socrates</option>
           <option id="2">Aristotle</option>
@@ -34,7 +32,7 @@ function App() {
       </div>
       
       {entity && (<PersonTimelineGlobe philospherName={entity}/> )}      
-      
+
     </div>
   )
 }

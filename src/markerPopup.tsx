@@ -1,64 +1,43 @@
 import React from "react";
 import { type eventPopupType, type StoryElement } from "./types"
+import './App.css'
 
-export function MarkerPopup({d, onClose} : {d:eventPopupType, onClose:()=>void})
+export function MarkerPopup({d, globeLoaded, onClose} : {d:eventPopupType | null,globeLoaded:boolean, onClose:()=>void})
 {
-  if(!d?.d){
+  if(!d || !d?.d || !globeLoaded){
     return <div></div>;
   }
     return (
-        <div
-          style={{
-           position: 'absolute',
-           top: '5vh',
-           right: 0,
-           width: '25%',
-           height: '95%',
-           zIndex: 10,
-           boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-           boxSizing: 'border-box',
-           backgroundColor: 'rgba(255, 255, 255, 0.95)',
-           color: '#333',
-           borderRadius: '8px',
-           fontFamily: 'sans-serif',
-           padding: '12px',
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <strong style={{ fontSize: '16px' }}>{d.d.label}</strong>
+        <div className="markerPopupContainer">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '10%' }}>
+            <strong className="popupHeading">{d.d.label}</strong>
             <button 
               onClick={() => onClose()} 
-              style={{ border: 'none', background: 'none', cursor: 'pointer', fontWeight: 'bold', marginLeft: '10px' }}
+              className="popupCloseButton"
             >
               ×
             </button>
           </div>
-          {d.d.story && (<PrepareCardHtml story={d.d.story}/>)}
+          <div className="popupStoryContainer">
+            <strong className="storyHeading">{d.d.story?.storyHeading}</strong>
+            <div className="storyImageParaContainer">
+              {d.d.story?.storyImage && (<div className="storyImageContainer">
+                <img className="storyImg" src={d.d.story?.storyImage}></img>
+              </div>)}
+              {d.d.story?.storyParas && (<PrepareCardHtml story={d.d.story}/>)}
+            </div>
+          </div>
+          
         </div>
     )
 }
 
-function PrepareCardHtml({story} : {story : StoryElement[]}) 
+function PrepareCardHtml({story} : {story : StoryElement}) 
 {
-  return React.createElement(
-    'div',
-    {style: {display : 'flex', flexDirection: 'column', gap: '6px', padding: '10px', height: "90%", 
-      overflow: 'auto'}},
-    story.map((child, i) => {
-    if(child.type == "heading")
-    {
-      return React.createElement('strong', {key : i, style: {fontSize:'14px', flex: '0 1 auto'}}, child.value);
-    }
-    else if (child.type === 'image') {
-      return React.createElement('div', {key:43523 , style:{flex: '2 0 70px', minHeight: 0, justifyContent: "center", 
-          alignItems: "center", display: "flex"}}, 
-        React.createElement('img', { key: i, style: { maxHeight: "100%", maxWidth: "100%", objectFit: "contain"} ,
-          src: child.value })
-      );
-    }
-    else if(child.type === 'paragraph')
-    {
-      return React.createElement('p', { key: i, style : {fontSize: '12px', flex: '0 1 auto'} }, child.value);
-    }
-  }));
+  return React.createElement('div',{className:'storyParaContainer'},
+        story.storyParas.map((para, i) => {
+          return React.createElement('p', { key: 'para'+i, className : 'storyParagraph' }, para)
+        }
+      )      
+    )
 }

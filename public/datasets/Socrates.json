@@ -9,6 +9,7 @@
             "size":40,
             "color":"red",
             "mapName" : "world_bc400" ,
+            "kingdomName":"Greek city-states",
             "id":0,
             "story" : {
                 "storyHeading" : "~400 BC Map",

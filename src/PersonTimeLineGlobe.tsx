@@ -313,8 +313,8 @@ useEffect(() => {
           return `<div></div>`}}
         }
         polygonCapColor={(d) => {const feat = d as CountryFeature; 
-          return getCountryLabel(feat) !== null ?
-            getCountryLabel(feat) == 'Greek city-states' ?
+          return getCountryLabel(feat) !== null && fullData ?
+            getCountryLabel(feat) == fullData[0].kingdomName ?
               'rgba(233, 225, 10, 0.91)' :
               'rgba(204, 0, 0, 0.91)' :
             '#0d0d0d'

@@ -10,16 +10,12 @@
             "color":"red",
             "mapName" : "world_bc400" ,
             "id":0,
-            "story":[
-                {
-                    "type" : "Heading",
-                    "value" : "~400 BC Map"
-                },
-                {
-                    "type" : "paragraph",
-                    "value" : "This map shows the world boundary in the year Socrates was alive. The borders show different kingdoms at that time."
-                }
-            ]
+            "story" : {
+                "storyHeading" : "~400 BC Map",
+                "storyParas" :[
+                    "This map shows the world boundary in the year Socrates was alive. The borders show different kingdoms at that time."
+                ]
+            }
         },
         {
             "id":1,
@@ -30,25 +26,13 @@
             "year": "470 BCE",
             "color": "green",
             "type":"event",
-            "story":
-            [
-                {
-                    "type" : "heading",
-                    "value": "Birth in Alopece Deme"
-                },
-                {
-                    "type" : "image",
-                    "value" : "https://iep.utm.edu/wp-content/media/Socrates2.png"
-                },
-                {
-                    "type" : "paragraph",
-                    "value" : "Socrates was born to sculptor and a midwife in the suburban deme of Alopece, now Athens."
-                },
-                {
-                    "type" : "audio",
-                    "value" : "https://samplelib.com/mp3/sample-15s.mp3"
-                }
-            ]
+            "story" : {
+                "storyHeading" : "Birth in Alopece Deme",
+                "storyImage" : "https://iep.utm.edu/wp-content/media/Socrates2.png",
+                "storyParas" :[
+                    "Socrates was born to sculptor and a midwife in the suburban deme of Alopece, now Athens."
+                ]
+            }
         },
         {
             "id":2,
@@ -59,20 +43,13 @@
             "year": "430 BCE",
             "color": "green",
             "type":"event",
-            "story": [
-                {
-                    "type" : "heading",
-                    "value": "Military Service: Battle of Potidaea"
-                },
-                {
-                    "type" : "image",
-                    "value" : "https://d7hftxdivxxvm.cloudfront.net/?height=1294&quality=85&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2F4hqgilloACSgPzpu6nLZWg%2Fnormalized.jpg&width=1600"
-                },
-                {
-                    "type" : "paragraph",
-                    "value" : "The Battle of Potidaea occurred in 432 BC during the early stages of the Peloponnesian War. The Athenian army defeated a combined force from Corinth and Potidaea."
-                }
-            ]
+            "story" : {
+                "storyHeading" : "Military Service: Battle of Potidaea",
+                "storyImage" : "https://d7hftxdivxxvm.cloudfront.net/?height=1294&quality=85&resize_to=fit&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2F4hqgilloACSgPzpu6nLZWg%2Fnormalized.jpg&width=1600",
+                "storyParas" :[
+                    "The Battle of Potidaea occurred in 432 BC during the early stages of the Peloponnesian War. The Athenian army defeated a combined force from Corinth and Potidaea."
+                ]
+            }
         }     
     ]
 }

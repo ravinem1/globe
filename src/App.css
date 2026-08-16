@@ -1,0 +1,225 @@
+/* 1. Default styles (Mobile first) */
+
+.globeLoadingDiv
+{
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+  background-color: rgba(229, 6, 6);
+  color: #0e2184;
+  border-radius: 8px;
+  font-family: sans-serif;
+  padding: 12px;
+}
+
+.menuLabel
+{
+  font-size: larger;
+}
+
+.menuLabelFull
+{
+  font-size: larger;
+}
+
+.markerPopupContainer
+{
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  border-radius: 8px;
+  font-family: sans-serif;
+  padding: 5px;
+  height: 35vh;
+  overflow: auto;
+}
+
+.popupStoryContainer
+  {
+    display : flex;
+    flex-direction: column;
+    gap: 10px; 
+    padding: 10px; 
+    align-items: flex-start;
+  } 
+
+ .storyHeading
+    {
+      font-size: 26px;
+      flex: 0 1 auto;
+      padding-top: 1%;
+    }
+
+.storyImageParaContainer
+    {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto;
+      width:100%;
+      align-items: center;
+    }
+.storyImg
+{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+ .popupHeading {
+    font-size: 28px;
+  }
+  .popupCloseButton {
+    border: none;
+    background: none; 
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: xx-large 
+  }
+  
+  .storyImageContainer
+  {
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width:50%;
+    aspect-ratio: 4/3;
+    overflow-y: auto;
+  }
+  .storyParaContainer
+  {
+    display: flex;
+    flex-direction: column;
+  }
+  .storyParagraph
+  {
+    font-size: 22px;
+    flex: 3 1 auto;
+  }
+
+/* 2. Desktop styles (Screens 768px wide and larger) */
+@media (min-width: 768px) {
+  .popupHeading {
+    font-size: 15px;
+  }
+  .popupCloseButton {
+    font-size:x-large 
+  }
+  .storyHeading
+  {
+    font-size:14px;
+  }
+  .storyImageParaContainer
+  {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow: auto;
+    width:100%;    
+  }
+  .storyImageContainer
+  {
+    width:15%;
+  }
+  .storyParagraph
+  {
+    font-size: 12px;
+  }
+  .globeLoadingDiv
+  {
+    top: 30%;
+    right: 37%;
+  }
+}
+
+
+.menuContainer
+{
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    gap: 15px;
+}
+
+.menuContainerFull
+{
+    height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    gap: 15px;
+}
+
+.globeAndInfoContainer
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 0;
+}
+
+#globeSection
+{
+  height: 60vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#infoSection
+{
+  height: 35vh;
+  width: 100%;
+}
+
+.custom-select {
+  min-width: 150px;
+}
+
+.custom-select select {
+  appearance: none;
+  position: relative;
+  width: 100%;
+  font-size: 1.15rem;
+  padding: 0.675em 6em 0.675em 1em;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 0.25rem;
+  color: #000;
+  cursor: pointer;
+}
+.custom-select::before,
+.custom-select::after {
+  --size: 0.3rem;
+  position: absolute;
+  content: "";
+  right: 1rem;
+  pointer-events: none;
+}
+.custom-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 40%;
+}
+
+.custom-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 55%;
+}
+

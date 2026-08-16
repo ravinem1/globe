@@ -1,11 +1,12 @@
 export interface StoryElement
 {
-  type : string;
-  value: string;
+  storyHeading : string;
+  storyImage?: string;
+  storyParas : string[];
 }
 export interface markerType 
 {
-label:string;lat:number; lng:number;story?:StoryElement[];size:number;
+label:string;lat:number; lng:number;story?:StoryElement;size:number;
 year?:string;color:string;id:number;type:string;mapName?:string;
 }
 

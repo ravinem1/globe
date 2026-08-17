@@ -105,6 +105,15 @@
     flex: 3 1 auto;
   }
 
+  #tilemapSection
+{
+  position: absolute;
+  top : 7%;
+  left: 0.5%;
+  height: 30%;
+  width: 40%;
+}
+
 /* 2. Desktop styles (Screens 768px wide and larger) */
 @media (min-width: 768px) {
   .popupHeading {
@@ -137,6 +146,11 @@
   {
     top: 30%;
     right: 37%;
+  }
+  #tilemapSection
+  {
+    height: 35%;
+    width: 30%;
   }
 }
 

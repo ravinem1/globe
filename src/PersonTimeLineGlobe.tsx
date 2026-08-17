@@ -5,6 +5,7 @@ import myGlobe8kTexture from './assets/blue_mable_21600x10800.jpg';
 import { MarkerPopup } from './markerPopup';
 import { markerSvg, faceSvg } from './svgHelper';
 import { type markerType, type eventPopupType, type GeoJsonData, type CountryFeature, type Arc } from './types';
+import { TilemapWithMarker } from './tilemapWithMarker';
 
 const arcColor = ["green","red"];
 const polygonAltitude = 0.01;
@@ -25,7 +26,7 @@ const [globeLoaded,setGlobeLoaded] = useState(false);
 const [eventPopup, setEventPopup] = useState<eventPopupType|null>(null);
 const [markerData, setMarkerData] = useState<Array<markerType> | null>(null);
 const [arcData, setArcData] = useState<Array<Arc>>([]);
-const [currentMarkerId, setCurrentMarkerId] = useState<number>(0);
+const [currentMarker, setCurrentMarker] = useState<{id:number,lat:number,lng:number}>({id:0,lat:0,lng:0});
 const [countries,setCountries] = useState<GeoJsonData | null>(null);
 const [fullData, setFullData] = useState<Array<markerType> | null>(null);
 
@@ -112,7 +113,7 @@ useEffect(() => {
           console.log(arg);
           globeRef.current?.pointOfView({lat:data.timeline[0].lat,lng:data.timeline[0].lng,
             altitude:0.3},2000);
-          setCurrentMarkerId(data.timeline[0].id);
+          setCurrentMarker({id:data.timeline[0].id, lat:data.timeline[0].lat,lng:data.timeline[0].lng});
           setPopupAfterSometime({d: data.timeline[0],x:1,y:1},eventPopuptimeout);
       })
       .catch(e => console.error(e));
@@ -176,7 +177,7 @@ useEffect(() => {
   function showNextEvent(d: any)
   {
    
-    if(markerData && d && (d.id >= currentMarkerId))
+    if(markerData && d && (d.id >= currentMarker.id))
       {
          
         const oldMarkers = markerData.filter(m => m.type !== 'person').map(m => {m.color = "grey"; return m});
@@ -193,11 +194,11 @@ useEffect(() => {
           updateArcStateAfterSometime(newArcs, arcShowtimeout);
           setEventPopup(null);
           setPopupAfterSometime({d: y,x:0,y:0}, eventPopuptimeout);
-          setCurrentMarkerId(y.id);
+          setCurrentMarker({id:y.id,lat:y.lat,lng:y.lng});
         }
         else{
           setEventPopup(null);
-          setCurrentMarkerId(99);
+          setCurrentMarker({id:99,lat:0,lng:0});
           if(fullData)
           setPopupAfterSometime({d: fullData[0],x:1,y:1},eventPopuptimeout);
         }
@@ -219,18 +220,20 @@ useEffect(() => {
       updateArcStateAfterSometime(arcData, arcShowtimeout);
       setEventPopup(null);
       setPopupAfterSometime({d: g[0],x:0,y:0},eventPopuptimeout);
-      setCurrentMarkerId(g[0].id);
+      setCurrentMarker({id: g[0].id, lat: g[0].lat, lng: g[0].lng});
       globeRef.current?.pointOfView({lat:g[0].lat,lng:g[0].lng,altitude:0.2},globePovChangeTimeout);
     }
     }
     else{
-      if(currentMarkerId == 99 && fullData)
+      if(currentMarker.id == 99 && fullData)
       {
         setPopupAfterSometime({d: fullData[0],x:1,y:1},eventPopuptimeout);
         return;
       }
       if(markerData)
-      showNextEvent(markerData.findLast(g => g.id == currentMarkerId)); // doubtful
+      {
+        showNextEvent(markerData.findLast(g => g.id == currentMarker.id)); // doubtful
+      }
     }
   }
 
@@ -329,10 +332,15 @@ useEffect(() => {
       <section id="infoSection">
         <MarkerPopup d={eventPopup} onClose={() => onPopupClose(eventPopup)} globeLoaded={globeLoaded} />
       </section>
+      {currentMarker && currentMarker.lat > 0 && (<section id='tilemapSection'>
+        <p style={{color:'white'}}>Location in today's world</p>
+        <TilemapWithMarker latitude={currentMarker.lat} longitude={currentMarker.lng} />
+      </section>)}
       {(!globeLoaded) && (
         <div className='globeLoadingDiv'>
             Loading map with {philospherName} timeline borders
         </div>)}
+     
     </div>
   )
 }

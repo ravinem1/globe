@@ -15,7 +15,7 @@ export function MarkerPopup({d, globeLoaded, onClose} : {d:eventPopupType | null
               onClick={() => onClose()} 
               className="popupCloseButton"
             >
-              ×
+              Next
             </button>
           </div>
           <div className="popupStoryContainer">

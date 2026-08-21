@@ -22,7 +22,7 @@ const arcStateTimerRef = useRef<number | null>(null);
 const popupTimerRef = useRef<number | null>(null);
 const checkboxInputRef = useRef<HTMLInputElement>(null);
 
-const [showTilemap, setShowTilemap] = useState<boolean>(true);
+const [showTilemap, setShowTilemap] = useState<boolean>(false);
 const [globeSize, setGlobeSize] = useState({ width: 0, height: 0 });
 const [globeLoaded,setGlobeLoaded] = useState(false);
 const [eventPopup, setEventPopup] = useState<eventPopupType|null>(null);
@@ -250,10 +250,10 @@ useEffect(() => {
       {
         if(checkboxInputRef.current.checked)
         {
-            setShowTilemap(false);
+            setShowTilemap(true);
         }
         else{
-           setShowTilemap(true);
+           setShowTilemap(false);
         }
       }
   }

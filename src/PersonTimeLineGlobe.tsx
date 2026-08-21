@@ -20,7 +20,9 @@ const globeSectionRef = useRef<HTMLDivElement | null>(null);
 const markerStateTimerRef = useRef<number | null>(null);
 const arcStateTimerRef = useRef<number | null>(null);
 const popupTimerRef = useRef<number | null>(null);
+const checkboxInputRef = useRef<HTMLInputElement>(null);
 
+const [showTilemap, setShowTilemap] = useState<boolean>(true);
 const [globeSize, setGlobeSize] = useState({ width: 0, height: 0 });
 const [globeLoaded,setGlobeLoaded] = useState(false);
 const [eventPopup, setEventPopup] = useState<eventPopupType|null>(null);
@@ -242,6 +244,20 @@ useEffect(() => {
     return c?.properties.NAME ?? c?.properties.SUBJECTO ?? c?.properties.PARTOF;
   }
 
+  function handleTilemapVisibility()
+  {
+      if(checkboxInputRef.current)
+      {
+        if(checkboxInputRef.current.checked)
+        {
+            setShowTilemap(false);
+        }
+        else{
+           setShowTilemap(true);
+        }
+      }
+  }
+
   return (
     <div className='globeAndInfoContainer'>
       <section id="globeSection" ref={globeSectionRef}>
@@ -332,9 +348,13 @@ useEffect(() => {
       <section id="infoSection">
         <MarkerPopup d={eventPopup} onClose={() => onPopupClose(eventPopup)} globeLoaded={globeLoaded} />
       </section>
-      {currentMarker && currentMarker.lat > 0 && (<section id='tilemapSection'>
-        <p style={{color:'white'}}>Location in today's world</p>
-        <TilemapWithMarker latitude={currentMarker.lat} longitude={currentMarker.lng} />
+      {globeLoaded && currentMarker && currentMarker.lat > 0 && (<section id='tilemapSection'>
+        <label style={{color:"darkgray"}}>
+        <input ref={checkboxInputRef} type="checkbox" 
+        onClick={handleTilemapVisibility} />
+        Location in today's world
+        </label>
+        {showTilemap && (<TilemapWithMarker latitude={currentMarker.lat} longitude={currentMarker.lng} />)}
       </section>)}
       {(!globeLoaded) && (
         <div className='globeLoadingDiv'>

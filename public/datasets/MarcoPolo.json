@@ -1,0 +1,58 @@
+{
+    "timeline":
+    [
+        {
+            "label":"Marco Polo",
+            "lat": 45.4408,
+            "lng": 12.3155,
+            "type":"person",
+            "size":40,
+            "color":"red",
+            "mapName" : "world_1200" ,
+            "kingdomName":"Greek city-states",
+            "id":0,
+            "story" : {
+                "storyHeading" : "~1250 AD Map",
+                "storyParas" :[
+                    "This map shows the world boundary in the years Marco Polo was alive. The borders show different kingdoms/countries at that time."
+                ]
+            }
+        },
+        {
+            "id":1,
+            "lat": 45.4408,
+            "lng": 12.3155,
+            "label": "Youth",
+            "size": 25,
+            "year": "1254 AD",
+            "color": "green",
+            "type":"event",
+            "story" : {
+                "storyHeading" : "Birth in Venice",
+                "storyImage" : "https://live.staticflickr.com/3926/14755342586_6af4cbc83b_b.jpg",
+                "storyParas" :[
+                    "Born in 1254, in Venice (present Italy).",
+                  "Studied commercial arithmetic, Latin literacy, and the lingua franca of the eastern Mediterranean.",
+                  "In 1269, his father and uncle returned from Mongol, carrying letters from Kublai Khan."
+                ]
+            }
+        },
+        {
+            "id":2,
+            "lat": 32.9281,
+            "lng": 35.0765,
+            "label": "Expedition first stop",
+            "size": 25,
+            "year": "1269 BCE",
+            "color": "green",
+            "type":"event",
+            "story" : {
+                "storyHeading" : "Oil from Holy Sepulchre",
+                "storyImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWw2mcWy7Y6afqEY-au2vGMHEKfHuRmPY5WUjbbUkNXA&s=10",
+                "storyParas" :[
+                    "In same year, 1271, he reaches Acre & Jerusalem and stops to collect holy oil from the Holy Sepulchre on instructions from the Pope. They were instructed by pope to do this."
+                ]
+            }
+        }     
+    ]
+}

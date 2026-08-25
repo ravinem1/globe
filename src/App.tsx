@@ -25,9 +25,9 @@ function App() {
         <label className={entity ? 'menulabel' : 'menuLabelFull'} 
           htmlFor='philospherList'>Timeline character: </label>
         <select className='custom-select' id="philospherList" onChange={philospherChanged}>
-          <option id="0">--Select--</option>
-          <option id="1">Socrates</option>
-          <option id="2">MarcoPolo</option>
+          <option id="0" value=" ">--Select--</option>
+          <option id="1" value="Socrates">Socrates</option>
+          <option id="2" value="MarcoPolo">Marco Polo</option>
         </select>     
       </div>
       

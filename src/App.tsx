@@ -27,7 +27,7 @@ function App() {
         <select className='custom-select' id="philospherList" onChange={philospherChanged}>
           <option id="0">--Select--</option>
           <option id="1">Socrates</option>
-          <option id="2">Aristotle</option>
+          <option id="2">MarcoPolo</option>
         </select>     
       </div>
       

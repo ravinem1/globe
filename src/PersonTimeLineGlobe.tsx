@@ -7,7 +7,7 @@ import { markerSvg, faceSvg } from './svgHelper';
 import { type markerType, type eventPopupType, type GeoJsonData, type CountryFeature, type Arc } from './types';
 import { TilemapWithMarker } from './tilemapWithMarker';
 
-const arcColor = ["green","red"];
+const arcColor = ["blue","purple"];
 const polygonAltitude = 0.01;
 const eventPopuptimeout = 2000;
 const arcShowtimeout = 2000;
@@ -279,8 +279,8 @@ useEffect(() => {
         arcEndLng="endLng"
         arcColor={arcColor}
         arcLabel="label"
-        arcStroke={0.1} 
-        arcAltitude={polygonAltitude}
+        arcStroke={0.5} 
+        arcAltitude={polygonAltitude + 0.01}
         //arcsTransitionDuration={2000}
         arcDashAnimateTime={4000}
         arcStartAltitude={polygonAltitude}

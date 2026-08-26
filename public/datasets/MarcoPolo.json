@@ -109,6 +109,26 @@
                     "Seeing the ships condition, without any iron nails, just tied together by coconut waste, Polos decided to take land route"
                 ]
             }
+        },
+        {
+            "id":6,
+            "lat": 37.3500 ,
+            "lng": 74.5700 ,
+            "label": "Mountain hurdle",
+            "size": 25,
+            "year": "1273 AD",
+            "color": "green",
+            "type":"event",
+            "story" : {
+                "storyHeading" : "Crossing peaks",
+                "storyImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-dXFPS7LHosyhC_2PXRSn9lWgJCyaNiKPIA_2r61_b-ohnp1lnhFQRz1B&s=10",
+                "storyParas" :[
+                    "Rest of the 1273 AD was passed while crossing Afghanistan mountaneous deserts and passes.",
+                    "He saw ancient marble palaces and grand ruins that showed past wealth in present day Balkh, Afghanistan.",
+                    "Then he crossed Afghanistan-Tajikistan border and Marco Polo wrote about the bitter cold and thin air of the place.",
+                    "Wrote about large wild sheep with huge horns—now known as Marco Polo sheep—roaming the high, lonely plateaus."
+                ]
+            }
         }
     ]
 }

@@ -14,7 +14,10 @@
             "story" : {
                 "storyHeading" : "~1250 AD Map",
                 "storyParas" :[
-                    "This map shows the world boundary in the years Marco Polo was alive. The borders show different kingdoms/countries at that time."
+                    "This map shows the world boundary in the years Marco Polo was alive. The borders show different kingdoms/countries at that time.",
+                    "You can zoom/rotate/click on the globe to explore.",
+                    "There is a checkbox in top left corner to see the location in current world map."
+        
                 ]
             }
         },

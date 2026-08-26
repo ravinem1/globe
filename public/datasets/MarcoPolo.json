@@ -90,6 +90,25 @@
                     "Religious demographic : large population of Muslims alongside various Eastern Christian sects, including Nestorians, Armenians, and Jacobites."
                 ]
             }
-        }     
+        },
+        {
+            "id":5,
+            "lat": 27.0675 ,
+            "lng": 56.4600 ,
+            "label": "Hormuz",
+            "size": 25,
+            "year": "1273 AD",
+            "color": "green",
+            "type":"event",
+            "story" : {
+                "storyHeading" : "Hormuz port shock",
+                "storyImage" : "https://cdn2.picryl.com/photo/1800/12/31/marco-polo-with-elephants-and-camels-arriving-at-hormuz-on-the-gulf-of-persia-7c24d6-1024.jpeg",
+                "storyParas" :[
+                    "In the year 1273, Polos reached Gormuz (Iran) planning to buy ship and sail from here.",
+                    "He noted that during the peak summer months, the heat was so intense that locals were forced to leave the city and sleep in cabins built over the water or submerged in rivers to survive.",
+                    "Seeing the ships condition, without any iron nails, just tied together by coconut waste, Polos decided to take land route"
+                ]
+            }
+        }
     ]
 }

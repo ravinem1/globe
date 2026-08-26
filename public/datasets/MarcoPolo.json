@@ -36,7 +36,8 @@
                 "storyParas" :[
                     "Born in 1254, in Venice (present Italy).",
                   "Studied commercial arithmetic, Latin literacy, and the lingua franca of the eastern Mediterranean.",
-                  "In 1269, his father and uncle returned from Mongol, carrying letters from Kublai Khan."
+                  "In 1269, his father and uncle returned from Mongol, carrying letters from Kublai Khan.",
+                    "After 2 years from here, aged 17, Marco Polo along with his father and uncle would start his expedition to Mongols."
                 ]
             }
         },
@@ -46,14 +47,14 @@
             "lng": 35.0765,
             "label": "Expedition first stop",
             "size": 25,
-            "year": "1269 AD",
+            "year": "1271 AD",
             "color": "green",
             "type":"event",
             "story" : {
                 "storyHeading" : "Oil from Holy Sepulchre",
                 "storyImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWw2mcWy7Y6afqEY-au2vGMHEKfHuRmPY5WUjbbUkNXA&s=10",
                 "storyParas" :[
-                    "In same year, 1271, he reaches Acre & Jerusalem and stops to collect holy oil from the Holy Sepulchre on instructions from the Pope. They were instructed by pope to do this."
+                    "In the year, 1271, he starts the long expedition and reaches Acre & Jerusalem and stops to collect holy oil from the Holy Sepulchre on instructions from the Pope. They were instructed by pope to do this."
                 ]
             }
         },
@@ -70,7 +71,7 @@
                 "storyHeading" : "Sea to land",
                 "storyImage" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsofzfgNP7b2q5iuDc2PFvjW53zDzE3rzU8nmQfwO3lA&s=10",
                 "storyParas" :[
-                    "In 1272, they travel through the mountains of Armenia and eastern Anatolia. Modern day  Erzurum, Turkey."
+                    "After travelling for a year, in the year 1272, they reach and travel through the mountains of Armenia and eastern Anatolia. Modern day  Erzurum, Turkey."
                 ]
             }
         },

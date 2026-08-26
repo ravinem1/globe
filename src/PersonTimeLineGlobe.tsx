@@ -172,7 +172,7 @@ useEffect(() => {
     else
     {
       setPopupAfterSometime({d: d,x:e.clientX,y:e.clientY},eventPopuptimeout);
-      globeRef.current?.pointOfView({lat:d.lat,lng:d.lng,altitude:0.2},globePovChangeTimeout);
+      globeRef.current?.pointOfView({lat:d.lat,lng:d.lng,altitude:0.4},globePovChangeTimeout);
     }
   }
 
@@ -187,7 +187,7 @@ useEffect(() => {
 
         if(y)
         {
-          globeRef.current?.pointOfView({lat:y.lat,lng:y.lng,altitude:0.3},globePovChangeTimeout);
+          globeRef.current?.pointOfView({lat:y.lat,lng:y.lng,altitude:0.4},globePovChangeTimeout);
           const newMarker = [...oldMarkers, y];
           const newArc : Arc = {startLat : d.lat,startLng:d.lng,endLat : y.lat,endLng:y.lng,color:"",label:'g'};
 
@@ -223,7 +223,7 @@ useEffect(() => {
       setEventPopup(null);
       setPopupAfterSometime({d: g[0],x:0,y:0},eventPopuptimeout);
       setCurrentMarker({id: g[0].id, lat: g[0].lat, lng: g[0].lng});
-      globeRef.current?.pointOfView({lat:g[0].lat,lng:g[0].lng,altitude:0.2},globePovChangeTimeout);
+      globeRef.current?.pointOfView({lat:g[0].lat,lng:g[0].lng,altitude:0.5},globePovChangeTimeout);
     }
     }
     else{

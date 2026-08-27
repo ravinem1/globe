@@ -133,6 +133,25 @@
                     "Wrote about large wild sheep with huge horns—now known as Marco Polo sheep—roaming the high, lonely plateaus."
                 ]
             }
+        },
+        {
+            "id":7,
+            "lat": 37.12063 ,
+            "lng": 79.92313 ,
+            "label": "China",
+            "size": 25,
+            "year": "1273 AD",
+            "color": "green",
+            "type":"event",
+            "story" : {
+                "storyHeading" : "Mongol Empire western border",
+                "storyImage" : "",
+                "storyParas" :[
+                    "In 1274, after surviving the brutal Pamir Mountains, the Polos found a fertile, self-sustaining city filled with gardens, vineyards, and bustling markets.",
+                    "Polo noted that the local population was predominantly Muslim and they traded and manufactured cotton.",
+                    "To reach China's interior, they had to cross the Taklamakan and Lop deserts. Caravans had to travel in tight formations and use bells on their animals to avoid getting separated in the blinding sandstorms."
+                ]
+            }
         }
     ]
 }

@@ -2,7 +2,6 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import {Marker} from '@adamscybot/react-leaflet-component-marker'
 import 'leaflet/dist/leaflet.css'
 import { useEffect } from 'react'
-import { pinSvg } from './svgHelper'
 
 // Explicitly typing the component as a React Functional Component
 const MapPin: React.FC = () => {

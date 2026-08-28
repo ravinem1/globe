@@ -33,17 +33,18 @@
   color: #333;
   border-radius: 8px;
   font-family: sans-serif;
-  padding: 5px;
+  padding: 10px 5px 8px 5px;
   height: 35vh;
   overflow: auto;
+  position: relative;
 }
 
 .popupStoryContainer
   {
     display : flex;
     flex-direction: column;
-    gap: 10px; 
-    padding: 10px; 
+    gap: 2px; 
+    padding: 6px; 
     align-items: flex-start;
   } 
 
@@ -80,7 +81,8 @@
     cursor: pointer;
     font-weight: bold;
     margin-left: 10px;
-    font-size: xx-large 
+    font-size: x-large;
+    color: blueviolet; 
   }
   
   .storyImageContainer
@@ -103,6 +105,16 @@
   {
     font-size: 22px;
     flex: 3 1 auto;
+  }
+  .scrollIndicator{
+    position: absolute;
+  top: 32vh;                  /* Moves top edge to the vertical center */
+  left: 30%;                  /* Pins the element to the right wall */
+  transform: translateY(-50%); /* Shifts element up by half its own height to perfectly center it */
+  
+  background-color: #a7283988;
+  color: blue;
+  padding: 10px;
   }
 
   #tilemapSection

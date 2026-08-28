@@ -58,7 +58,7 @@ export function MarkerPopup({d, globeLoaded, onClose} : {d:eventPopupType | null
   }
     return (
         <div ref={containerRef} className="markerPopupContainer">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '10%' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '5%', paddingBottom: '10px' }}>
             <strong className="popupHeading">{d.d.label}</strong>
             <button 
               ref={nextButtonRef}
@@ -69,7 +69,7 @@ export function MarkerPopup({d, globeLoaded, onClose} : {d:eventPopupType | null
             </button>
           </div>
           <div className="popupStoryContainer">
-            <strong className="storyHeading">{d.d.story?.storyHeading}</strong>
+            <b className="storyHeading">{d.d.story?.storyHeading}</b>
             <div className="storyImageParaContainer">
               {d.d.story?.storyImage && (<div className="storyImageContainer">
                 <img className="storyImg" src={d.d.story?.storyImage}></img>
@@ -77,7 +77,7 @@ export function MarkerPopup({d, globeLoaded, onClose} : {d:eventPopupType | null
               {d.d.story?.storyParas && (<PrepareCardHtml story={d.d.story}/>)}
             </div>
           </div>
-          {isTopNextOutOfView && (<div style={{ display: 'flex', justifyContent: 'flex-end', height: '10%' }}>
+          {isTopNextOutOfView && (<div style={{ display: 'flex', justifyContent: 'flex-end', height: '5%' }}>
             <button 
               onClick={() => onClose()} 
               className="popupCloseButton"

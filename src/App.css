@@ -50,7 +50,7 @@
 
  .storyHeading
     {
-      font-size: 26px;
+      font-size: 22px;
       flex: 0 1 auto;
       padding-top: 1%;
     }
@@ -73,7 +73,7 @@
 }
 
  .popupHeading {
-    font-size: 28px;
+    font-size: 26px;
   }
   .popupCloseButton {
     border: none;
@@ -108,7 +108,7 @@
   }
   .scrollIndicator{
     position: absolute;
-  top: 28vh;                  /* Moves top edge to the vertical center */
+  top: 27vh;                  /* Moves top edge to the vertical center */
   left: 30%;                  /* Pins the element to the right wall */
   transform: translateY(-50%); /* Shifts element up by half its own height to perfectly center it */
   
@@ -136,13 +136,13 @@
   }
   .storyHeading
   {
-    font-size:14px;
+    font-size:12px;
   }
   .storyImageParaContainer
   {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 5px;
     overflow: auto;
     width:100%;    
   }

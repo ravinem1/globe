@@ -108,7 +108,7 @@
   }
   .scrollIndicator{
     position: absolute;
-  top: 32vh;                  /* Moves top edge to the vertical center */
+  top: 28vh;                  /* Moves top edge to the vertical center */
   left: 30%;                  /* Pins the element to the right wall */
   transform: translateY(-50%); /* Shifts element up by half its own height to perfectly center it */
   
